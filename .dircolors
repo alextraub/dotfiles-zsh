@@ -1,0 +1,111 @@
+# LS_COLORS for ls, fd and completion menus. .zshrc loads it with dircolors -b.
+#
+# Colors are the terminal's 16 ANSI colors (30-37 normal, 90-97 bright), which
+# pywal16 sets (or the terminal's defaults without it), so this follows every
+# colorscheme change without being regenerated. Slot roles: directories in the accent
+# (35), links info (36), executables success (32), FIFOs warning (33), sockets
+# special (95), devices modified (93), broken links error (31). setuid/setgid
+# swap foreground and background (07), so the text is the terminal background on
+# error/warning; sticky and other-writable dirs sit on color0 (40).
+
+# File types
+DIR 01;35
+LINK 36
+ORPHAN 01;31
+MISSING 01;31
+EXEC 01;32
+FIFO 33
+SOCK 95
+DOOR 95
+BLK 01;93
+CHR 01;93
+SETUID 07;31
+SETGID 07;33
+STICKY 01;35;40
+OTHER_WRITABLE 01;35;40
+STICKY_OTHER_WRITABLE 01;35;40
+
+# color9 (parameter; no orange slot)
+.tar 91
+.tgz 91
+.gz 91
+.xz 91
+.zst 91
+.bz2 91
+.lz4 91
+.zip 91
+.7z 91
+.rar 91
+.deb 91
+.rpm 91
+.jar 91
+
+# color13 (special)
+.png 95
+.jpg 95
+.jpeg 95
+.gif 95
+.webp 95
+.avif 95
+.svg 95
+.bmp 95
+.ico 95
+.tif 95
+.tiff 95
+.xcf 95
+.kra 95
+
+# color11 (modified)
+.mp3 93
+.flac 93
+.ogg 93
+.opus 93
+.wav 93
+.m4a 93
+.mp4 93
+.mkv 93
+.webm 93
+.mov 93
+.avi 93
+
+# color12 (property)
+.pdf 94
+.epub 94
+.djvu 94
+.doc 94
+.docx 94
+.odt 94
+.xls 94
+.xlsx 94
+.ods 94
+.ppt 94
+.pptx 94
+.odp 94
+
+# color14 (hint)
+.iso 96
+.img 96
+.qcow2 96
+.vdi 96
+.vmdk 96
+.appimage 96
+
+# color3 (warning)
+.pem 33
+.crt 33
+.key 33
+.pub 33
+.gpg 33
+.asc 33
+.sig 33
+
+# color8 (overlay0)
+.bak 90
+.old 90
+.orig 90
+.tmp 90
+.swp 90
+.swo 90
+.part 90
+.log 90
+.lock 90
