@@ -1,6 +1,6 @@
 # zsh dependencies
 
-Stowing this package links `~/.zshrc`, `~/.dircolors` and `~/.oh-my-zsh/custom/themes/wal.zsh-theme`. Install the following first; Oh My Zsh has to be installed **before** stowing, and its installer has to keep the stowed `~/.zshrc` (see the commands below).
+Stowing this package links `~/.zshrc`, `~/.dircolors` and `~/.oh-my-zsh/custom/themes/wal.zsh-theme`. Install the following first; Oh My Zsh has to be installed **before** stowing (its installer refuses to run once `~/.oh-my-zsh` exists), and the `~/.zshrc` it writes has to be moved aside before stowing (see the commands below).
 
 Stow from the superproject root, whose `.stowrc` passes `--no-folding`. Without it, on a machine where `~/.oh-my-zsh` doesn't exist yet, stow would link the whole directory into this repo and the Oh My Zsh installer would write into the repo.
 
@@ -22,8 +22,12 @@ sudo pacman -S zsh          # Arch / CachyOS
 sudo apt install zsh        # Debian / Ubuntu
 brew install zsh            # macOS
 
-# Oh My Zsh: use --unattended and --keep-zshrc so it does not overwrite the stowed ~/.zshrc
+# Oh My Zsh. --keep-zshrc keeps an existing ~/.zshrc; without one, the installer
+# writes its template there, which blocks stowing
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
+
+# Move any ~/.zshrc that isn't the stowed link aside before stowing
+[ -f ~/.zshrc ] && [ ! -L ~/.zshrc ] && mv ~/.zshrc ~/.zshrc.pre-dotfiles
 
 # zsh-autosuggestions plugin, Oh My Zsh method from INSTALL.md.
 # Already enabled in plugins=(...) in .zshrc, so only the clone is needed.
@@ -47,6 +51,7 @@ chsh -s "$(command -v zsh)"
 
 ```sh
 zsh --version
+test -L ~/.zshrc && echo ".zshrc stowed" || echo ".zshrc NOT stowed"
 test -f ~/.oh-my-zsh/oh-my-zsh.sh && echo "oh-my-zsh ok"
 test -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" && echo "autosuggestions ok"
 ```
